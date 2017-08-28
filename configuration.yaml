@@ -37,9 +37,10 @@ group:
     icon: mdi:home
     entities:
       - camera.raspberry_pi_camera
-      - group.sensors_group
+      - group.controls_group
 
-  sensors_group:
-    name: Sensors
+  controls_group:
+    name: Controls
     entities:
       - sensor.pan_tilt_phat
+      - script.1503899567501

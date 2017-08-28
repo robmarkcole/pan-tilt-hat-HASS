@@ -6,6 +6,8 @@ This component adds the [pimoroni](https://shop.pimoroni.com/products/pan-tilt-h
 * Add to your configuration file:
 
 ```
+script: !include scripts.yaml
+
 camera:
   - platform: rpi_camera
     vertical_flip: 1
@@ -19,12 +21,13 @@ group:
     icon: mdi:home
     entities:
       - camera.raspberry_pi_camera
-      - group.sensors_group
+      - group.controls_group
 
-  sensors_group:
-    name: Sensors
+  controls_group:
+    name: Controls
     entities:
       - sensor.pan_tilt_phat
+      - script.1503899567501
 ```
 
 <img src="https://github.com/robmarkcole/pan-tilt-phat-HASS/blob/master/my_pan_tilt.png">
