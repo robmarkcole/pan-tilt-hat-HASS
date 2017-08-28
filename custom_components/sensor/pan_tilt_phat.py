@@ -28,14 +28,19 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         pantilthat.tilt(0)
         return True
 
-    def pan_tilt_service(call):
+    def pan_service(call):
         """Pan the stage."""
-        pantilthat.pan(call.data.get('pan'))
-        pantilthat.tilt(call.data.get('tilt'))
+        pantilthat.pan(call.data.get("Pan"))
+        return True
+
+    def tilt_service(call):
+        """Pan the stage."""
+        pantilthat.tilt(call.data.get("Tilt"))
         return True
 
     hass.services.register(DOMAIN, 'home', home_service)
-    hass.services.register(DOMAIN, 'pan_tilt', pan_tilt_service)
+    hass.services.register(DOMAIN, 'tilt', tilt_service)
+    hass.services.register(DOMAIN, 'pan', pan_service)
     add_devices([PanTiltPhat(pantilthat)], True)
     return True
 
