@@ -44,3 +44,4 @@ group:
     entities:
       - sensor.pan_tilt_phat
       - script.1503899567501
+      - sensor.pan_tilt_phat

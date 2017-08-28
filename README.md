@@ -28,6 +28,7 @@ group:
     entities:
       - sensor.pan_tilt_phat
       - script.1503899567501
+      - sensor.pan_tilt_phat
 ```
 
 <img src="https://github.com/robmarkcole/pan-tilt-phat-HASS/blob/master/my_pan_tilt.png">

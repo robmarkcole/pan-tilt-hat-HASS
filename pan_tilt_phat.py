@@ -5,6 +5,7 @@ For more details about this component, please refer to the documentation at
 https://home-assistant.io/components/sensor.pan_tilt_phat
 """
 
+from datetime import timedelta
 import logging
 
 from homeassistant.helpers.entity import Entity
@@ -12,6 +13,7 @@ from homeassistant.helpers.entity import Entity
 REQUIREMENTS = ['pantilthat==0.0.4']
 _LOGGER = logging.getLogger(__name__)
 DOMAIN = 'pan_tilt_phat'
+SCAN_INTERVAL = timedelta(seconds=1)
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
     try:
@@ -34,7 +36,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
 
     hass.services.register(DOMAIN, 'home', home_service)
     hass.services.register(DOMAIN, 'pan_tilt', pan_tilt_service)
-    add_devices([PanTiltPhat()], True)
+    add_devices([PanTiltPhat(pantilthat)], True)
     return True
 
 
@@ -43,10 +45,11 @@ class PanTiltPhat(Entity):
 
     ICON = 'mdi:camera-switch'
 
-    def __init__(self):
+    def __init__(self, pantilthat):
         """Initialize the stage."""
         self._name = DOMAIN
         self._state = None       # json obj with pan and tilt
+        self._pantilthat = pantilthat
 
     @property
     def name(self):
@@ -62,3 +65,10 @@ class PanTiltPhat(Entity):
     def icon(self):
         """Icon to use in the frontend, if any."""
         return self.ICON
+
+    def update(self):
+        """Get the latest data from the stage.
+        Issue with tilt"""
+        self._pan = self._pantilthat.get_pan()
+        self._tilt = self._pantilthat.get_tilt()
+        self._state = "Pan:{}".format(self._pan)
