@@ -24,12 +24,6 @@ sun:
 automation: !include automations.yaml
 script: !include scripts.yaml
 
-panel_iframe:
-  pantilt:
-    title: 'Pan-tilt hat'
-    url: 'http://192.168.0.26:8082/'
-    icon: mdi:camera
-
 camera:
   - platform: rpi_camera
     vertical_flip: 1
