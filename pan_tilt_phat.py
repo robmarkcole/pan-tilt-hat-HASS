@@ -20,7 +20,23 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         _LOGGER.error("No pan-tilt pHAT was found.")
         return False
 
+    def home_service(call):
+        """Return the stage to home."""
+        pantilthat.pan(0)
+        pantilthat.tilt(0)
+        return True
+
+    def pan_tilt_service(call):
+        """Pan the stage."""
+        pantilthat.pan(call.data.get('pan'))
+        pantilthat.tilt(call.data.get('tilt'))
+        return True
+
+    hass.services.register(DOMAIN, 'home', home_service)
+    hass.services.register(DOMAIN, 'pan_tilt', pan_tilt_service)
     add_devices([PanTiltPhat()], True)
+    return True
+
 
 class PanTiltPhat(Entity):
     """Representation of the stage."""
@@ -31,12 +47,6 @@ class PanTiltPhat(Entity):
         """Initialize the stage."""
         self._name = DOMAIN
         self._state = None       # json obj with pan and tilt
-
-    def home(self):
-        """Return the name of the sensor."""
-        self._pantilt.pan(0)
-        self._pantilt.tilt(0)
-        return
 
     @property
     def name(self):
