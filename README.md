@@ -31,5 +31,3 @@ group:
 ```
 
 <img src="https://github.com/robmarkcole/pan-tilt-phat-HASS/blob/master/my_pan_tilt.png">
-<img src="https://github.com/robmarkcole/pan-tilt-phat-HASS/blob/master/main_hass_pan_tilt.png">
-<img src="https://github.com/robmarkcole/pan-tilt-phat-HASS/blob/master/call_pan_tilt.png">
