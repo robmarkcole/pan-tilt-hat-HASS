@@ -29,8 +29,6 @@ DISCUSS THE SERVICES.
 
 To additionally add the raspberry pi camera (in the correct orientation) and the input sliders to control the servos, also add the following to your `configuration.yaml` file:
 ```yaml
-# Example configuration.yaml entry,
-# which is equivalent to the default setup
 camera:
   - platform: rpi_camera
     vertical_flip: 1
