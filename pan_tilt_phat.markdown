@@ -13,7 +13,7 @@ ha_release: 0.53
 ha_iot_class: "Local Push"
 ---
 
-The `pan_tilt_phat` platform allows you to control a [Pimoroni Pan-Tilt hat](https://shop.pimoroni.com/products/pan-tilt-hat) mounted on the raspberry-pi running Home Assistant. This documentation assumes you have a [raspberry pi camera](https://home-assistant.io/components/camera.rpi_camera/) mounted on the hat, although other brands of camera could be used. This platform does not currently support control of the LED's described on the Pimorni page.
+The `pan_tilt_phat` platform allows you to control a [Pimoroni Pan-Tilt hat](https://shop.pimoroni.com/products/pan-tilt-hat) mounted on the raspberry-pi running Home Assistant. This documentation assumes you have a [raspberry pi camera](https://home-assistant.io/components/camera.rpi_camera/) mounted on the hat, although other brands of camera could be used. This platform does not currently support control of the LED's described on the Pimoroni page.
 
 The Pan-tilt hat has two servos each with 180 degrees of motion (+/- 90 degrees) along each axis. This platform provides services for setting the angle of each servo. It also provides a service to home the servos to zero degrees on both axis. This documentation describes how to setup [input_sliders](https://home-assistant.io/components/input_slider/) on the Home Assistant front end to control the servos.
 
@@ -25,9 +25,32 @@ To add this platform to your installation, add the following to your `configurat
 sensor:
   - platform: pan_tilt_phat
 ```
-DISCUSS THE SERVICES.
+### {% linkable_title Service `home_service` %}
 
-To additionally add the raspberry pi camera (in the correct orientation) and the input sliders to control the servos, also add the following to your `configuration.yaml` file:
+Calling this service returns the servos to their home position, no service data is required.
+
+### {% linkable_title Service `pan_service` %}
+
+Calling this service changes the pan angle (horizontal plane). The angular range is from -90 to 90 degrees.
+
+| Service data attribute | Optional | Description |
+| ---------------------- | -------- | ----------- |
+| `Pan` | no | An integer in the range -90 to 90
+
+
+### {% linkable_title Service `tilt_service` %}
+
+Calling this service changes the tilt angle (vertical plane). The angular range is from -90 to 90 degrees.
+
+| Service data attribute | Optional | Description |
+| ---------------------- | -------- | ----------- |
+| `Tilt` | no | An integer in the range -90 to 90
+
+
+### {% linkable_title Optional input_slider & camera configuration %}
+
+To add the raspberry pi camera (in the correct orientation) and the input sliders to control the servos, add the following to your `configuration.yaml` file:
+
 ```yaml
 camera:
   - platform: rpi_camera
