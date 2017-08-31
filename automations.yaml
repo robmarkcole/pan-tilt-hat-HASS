@@ -15,3 +15,11 @@
   trigger:
   - entity_id: input_slider.tilt_control
     platform: state
+- action:
+  - service: python_script.input_slider_control
+  alias: Slider Automation
+  condition: []
+  id: '1504157301166'
+  trigger:
+  - entity_id: sensor.pan_tilt_phat
+    platform: state
