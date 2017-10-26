@@ -2,7 +2,7 @@
 Support for pan-tilt pHAT.
 
 For more details about this component, please refer to the documentation at
-https://home-assistant.io/components/sensor.pan_tilt_phat
+https://home-assistant.io/components/pan_tilt_phat
 """
 
 from datetime import timedelta
@@ -16,8 +16,12 @@ DOMAIN = 'pan_tilt_phat'
 SCAN_INTERVAL = timedelta(seconds=1)
 
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
-    """Setup the pan-tilt sensor."""
+def setup(hass, config):
+    """Set up the pan-tilt-hat component."""
+    _LOGGER.info("Creating new pan-tilt-hat component")
+
+    if DOMAIN not in hass.data:
+        hass.data[DOMAIN] = []
     try:
         import pantilthat
     except OSError:
@@ -43,7 +47,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     hass.services.register(DOMAIN, 'home', home_service)
     hass.services.register(DOMAIN, 'tilt', tilt_service)
     hass.services.register(DOMAIN, 'pan', pan_service)
-    add_devices([PanTiltPhat(pantilthat)], True)
+    hass.data[DOMAIN] = PanTiltPhat(pantilthat)
     return True
 
 
@@ -53,9 +57,9 @@ class PanTiltPhat(Entity):
     ICON = 'mdi:camera-switch'
 
     def __init__(self, pantilthat):
-        """Initialize the stage."""
+        """Initialise the stage."""
         self._name = DOMAIN
-        self._state = None       # json obj with pan and tilt
+        self._state = None
         self._pantilthat = pantilthat
         self._pan = self._pantilthat.get_pan()
         self._tilt = self._pantilthat.get_tilt()

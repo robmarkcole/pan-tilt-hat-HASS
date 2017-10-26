@@ -30,8 +30,7 @@ camera:
   - platform: rpi_camera
     vertical_flip: 1
 
-sensor:
-  platform: pan_tilt_phat
+pan_tilt_phat:
 
 input_slider:
   pan_control:
@@ -59,7 +58,6 @@ group:
   controls_group:
     name: Controls
     entities:
-      - sensor.pan_tilt_phat
       - script.1503899567501
       - input_slider.pan_control
       - input_slider.tilt_control
