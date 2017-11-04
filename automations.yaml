@@ -1,22 +1,22 @@
 - action:
   - data: {}
-    service: python_script.pan_slider
+    service: python_script.pan_number
   alias: Pan Automation
   condition: []
   id: '1503933026472'
   trigger:
-  - entity_id: input_slider.pan_control
+  - entity_id: input_number.pan_control
     platform: state
 - action:
-  - service: python_script.tilt_slider
+  - service: python_script.tilt_number
   alias: Tilt Automation
   condition: []
   id: '1503936125604'
   trigger:
-  - entity_id: input_slider.tilt_control
+  - entity_id: input_number.tilt_control
     platform: state
 - action:
-  - service: python_script.input_slider_control
+  - service: python_script.input_number_control
   alias: Slider Automation
   condition: []
   id: '1504157301166'
