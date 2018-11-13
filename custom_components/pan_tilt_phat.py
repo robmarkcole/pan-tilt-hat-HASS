@@ -10,7 +10,7 @@ import logging
 
 from homeassistant.helpers.entity import Entity
 
-REQUIREMENTS = ['pantilthat==0.0.4']
+REQUIREMENTS = ['pantilthat==0.0.7']
 _LOGGER = logging.getLogger(__name__)
 DOMAIN = 'pan_tilt_phat'
 
