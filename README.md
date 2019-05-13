@@ -2,7 +2,8 @@ This custom component adds the [pimoroni](https://shop.pimoroni.com/products/pan
 
 <img src="https://github.com/robmarkcole/pan-tilt-phat-HASS/blob/master/my_pan_tilt.png" width="300">
 
-Place the custom_components folder in your configuration directory (or add its contents to an existing custom_components folder). Add to your `configuration.yaml`:
+Place the custom_components folder in your configuration directory (`pi@raspberrypi:~/.homeassistant $ mv ~/Github/pan-tilt-hat-HASS/custom_components .`) or add its contents to an existing custom_components folder. Add to your `configuration.yaml`:
+
 ```yaml
 pan_tilt_phat:
 ```
